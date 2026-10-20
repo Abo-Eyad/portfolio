@@ -1,0 +1,13 @@
+{
+  "name": "ahmed-wahab-portfolio",
+  "private": true,
+  "scripts": {
+    "build:hairline": "esbuild assets/hairline.js --bundle --minify --format=iife --outfile=assets/hairline.bundle.js"
+  },
+  "dependencies": {
+    "@lucasmarkes/hairline": "^0.5.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
