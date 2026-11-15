@@ -5,9 +5,16 @@ export function capDevicePixelRatio(ratio: number) {
   return Math.min(2, Math.max(1, Number.isFinite(ratio) ? ratio : 1));
 }
 
-// A canvas denser than the cover-fitted 960x540 web frames adds fill cost on phones but no detail.
-export function canvasRatio(cssWidth: number, cssHeight: number, devicePixelRatio: number, frameWidth = 960, frameHeight = 540) {
+// A canvas denser than the cover-fitted 1280x720 originals adds fill cost on phones but no detail.
+export function canvasRatio(cssWidth: number, cssHeight: number, devicePixelRatio: number, frameWidth = 1280, frameHeight = 720) {
   return Math.min(capDevicePixelRatio(devicePixelRatio), frameWidth / cssWidth, frameHeight / cssHeight);
+}
+
+// Static builds ship the 1280x720 originals in frames-hd beside the light scrub frames
+// (scripts/prepare-static.mjs). Other hosts already serve originals, so there is no separate tier.
+export function hdFrameUrl(url: string) {
+  const hd = url.replace(/\/frames\/(frame-\d{3}\.jpg)$/, "/frames-hd/$1");
+  return hd === url ? null : hd;
 }
 
 // Coarse-to-fine: every 8th frame and the final one first, so the whole scrub range works

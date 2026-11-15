@@ -36,6 +36,12 @@ for (let index = 1; index <= 80; index++) {
   const destination = path.join(frameDirectory, filename);
   // Prefer the web-sized copies from scripts/optimize-frames.py; the originals are ~2x the bytes.
   const original = [path.join("assets", "frames-web", filename), path.join("assets", "frames", filename), path.join("public", "assets", "frames", filename)].find(existsSync);
+  // The untouched originals ship too: the hero sharpens the frame a visitor rests on with them.
+  const hd = path.join("assets", "frames", filename);
+  if (existsSync(hd)) {
+    await mkdir(path.join("dist", "assets", "frames-hd"), { recursive: true });
+    await cp(hd, path.join("dist", "assets", "frames-hd", filename));
+  }
   if (original) {
     await cp(original, destination);
   } else if (!existsSync(destination)) {
