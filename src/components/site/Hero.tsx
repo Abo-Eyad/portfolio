@@ -8,6 +8,7 @@ import {
   canvasRatio,
   coverFit,
   easeFrameIndex,
+  frameLoadOrder,
   HERO_EAGER_FRAMES,
   nearestLoadedFrame,
   targetFrameIndex,
@@ -48,12 +49,14 @@ export function Hero() {
     frames.current = images;
     loadedFrames.current = loaded;
 
-    const loadFrame = async (index: number) => {
+    const order = frameLoadOrder(HERO_FRAMES.length);
+    const loadFrame = async (position: number) => {
+      const index = order[position] ?? -1;
       const image = images[index];
       const source = HERO_FRAMES[index];
       if (!image || !source) return;
       try {
-        image.fetchPriority = index < HERO_EAGER_FRAMES ? "high" : "low";
+        image.fetchPriority = position < HERO_EAGER_FRAMES ? "high" : "low";
         // Only fetch here; decoding all 80 frames up front burns CPU and the cache evicts them anyway.
         await new Promise((resolve, reject) => {
           image.onload = resolve;
@@ -67,15 +70,12 @@ export function Hero() {
       }
     };
 
-    void (async () => {
-      await Promise.all(
-        Array.from({ length: HERO_EAGER_FRAMES }, (_, index) => loadFrame(index)),
-      );
-      for (let index = HERO_EAGER_FRAMES; index < HERO_FRAMES.length; index++) {
-        if (cancelled) return;
-        await loadFrame(index);
-      }
-    })();
+    // Six parallel downloads: one at a time paid a full round trip per frame (~95 s on a 2 Mbps link).
+    let next = 0;
+    const worker = async () => {
+      while (!cancelled && next < order.length) await loadFrame(next++);
+    };
+    for (let i = 0; i < 6; i++) void worker();
 
     return () => {
       cancelled = true;
