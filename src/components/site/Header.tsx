@@ -10,7 +10,7 @@ export function Header() {
   const { t, toggle, lang } = useLang();
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 md:bg-background/70 md:backdrop-blur-xl">
       <div className="mx-auto grid h-22 max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:flex sm:justify-between" dir="ltr">
         <a href="#top" aria-label={t.brand} className="shrink-0 rounded-full">
           <img src={`${import.meta.env.BASE_URL}logo-badge.png`} alt={t.brand} width={64} height={64} className="size-16 rounded-full object-contain" />

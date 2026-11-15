@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  canvasRatio,
   capDevicePixelRatio,
   coverFit,
   easeFrameIndex,
@@ -24,6 +25,12 @@ describe("Owner's canvas frame-sequence rules", () => {
     expect(capDevicePixelRatio(1)).toBe(1);
     expect(capDevicePixelRatio(1.5)).toBe(1.5);
     expect(capDevicePixelRatio(3)).toBe(2);
+  });
+
+  it("never sizes the canvas beyond what the 1280x720 frames can fill", () => {
+    expect(canvasRatio(390, 844, 3)).toBe(720 / 844);
+    expect(canvasRatio(1920, 1080, 1)).toBe(2 / 3);
+    expect(canvasRatio(320, 480, 1)).toBe(1);
   });
 
   it("maps scroll progress from frame 0 through frame 79", () => {
