@@ -1,0 +1,250 @@
+// Real portfolio facts, with owner-supplied branding and Egyptian Arabic wording.
+export type Lang = "en" | "ar";
+
+export const links = {
+  linkedin: "https://www.linkedin.com/in/eng-ahmed-abd-elwahab/",
+  github: "https://github.com/abo-eyad",
+  youtube: "https://www.youtube.com/@Ahmed.Wahab.INFRABIM",
+  gumroad: "https://mawengineer.gumroad.com/",
+  civil3d: "https://civil3d.si",
+  cv: "https://drive.google.com/file/d/15NqYBNMywG6jDcqvsbFDw_AWxRt00oR0/view",
+  phone: "tel:+201140096690",
+};
+
+export const emailAddress = () => "ahmed@civil3d.si";
+
+const techTools = [
+  "C# / .NET", "Civil 3D .NET API", "AutoCAD .NET API", "Revit API", "Inventor API",
+  "Model Context Protocol (MCP)", "WPF", "AppBundle / NETLOAD", "Python", "Dynamo", "Git", "Claude Code",
+  "Antigravity CLI", "Generative AI", "Prompt Engineering", "Civil 3D", "AutoCAD", "Revit",
+  "Navisworks Manage", "Inventor Professional", "Infrastructure Parts Editor", "WaterGEMS", "SewerGEMS",
+  "InfoWorks ICM", "MS Office Suite",
+];
+
+const companies = [
+  "Perfect Construction", "Smart Engineering Consultancy", "Hassan Allam Construction", "El-Dafe Contracting",
+  "Red Sea Global", "7 Seas", "VINCI Construction", "Orascom Construction", "Arab Contractors", "NEOM", "Qiddiya",
+];
+
+const tools = {
+  c3d: { name: "C3D-MCP-Bridge", meta: "Civil 3D 2025 · 2026 · 2027 · C# · .NET", tags: ["C#", ".NET", "Civil 3D", "MCP"] },
+  rvt: { name: "Rvt-MCP-Bridge", meta: "Revit 2025 · C# · .NET", tags: ["C#", "Revit API", "MCP"] },
+  inv: { name: "Inv-MCP-Bridge", meta: "Inventor 2026 · C# · .NET · COM", tags: ["C#", "Inventor", "IPE", "MCP"] },
+};
+
+export const content = {
+  en: {
+    brand: "Civil 3D Super Intelligents",
+    name: "Ahmed Wahab",
+    fullName: "Ahmed Abdel Wahab",
+    metaTitle: "Ahmed Wahab — Senior BIM Lead & Infrastructure Automation Expert",
+    metaDesc: "Senior BIM Lead and Infrastructure Automation Expert — wet, dry & ICT utility networks across KSA, the UAE & Egypt, and custom C#/.NET MCP servers for Civil 3D, Revit & Inventor.",
+    nav: { about: "About", skills: "Skills", tools: "Tools", experience: "Experience", projects: "Projects", education: "Education", cv: "CV", contact: "Contact" },
+    langSwitch: "العربية",
+    hero: {
+      status: "Available for BIM Leadership & Automation Roles",
+      headline: "Ahmed Wahab",
+      role: "Senior BIM Lead · Infrastructure Automation · C#/.NET Developer",
+      lead: "Over a decade delivering wet, dry & ICT utility networks for landmark mega-projects across KSA, the UAE & Egypt — now pairing deep BIM design authority with custom C#/.NET MCP servers for Civil 3D, Revit & Inventor and multi-agent AI workflows that automate the engineering itself.",
+      ctaContact: "Get in touch", ctaTools: "View my tools", ctaCv: "View CV",
+      stats: [["10+", "Years Exp."], ["4", "Custom Tools"], ["3", "Countries"]],
+      scroll: "Scroll",
+      frameError: "Some hero frames could not be loaded.",
+    },
+    about: {
+      eyebrow: "Profile",
+      title: ["Engineering the networks —", "and the tools that build them."],
+      body: "Senior BIM Lead and Infrastructure Automation Expert — currently Senior Infrastructure BIM Engineer at Perfect Construction, responsible for wet & dry utilities on the iCity New Cairo crystal lagoon systems — with over a decade delivering wet, dry & ICT utility networks for landmark mega-projects across KSA, the UAE & Egypt — King Abdel-Aziz Park, Qiddiya City and Shura Island among them. I pair deep hydraulic and BIM design authority (SewerGEMS, WaterGEMS, InfoWorks ICM, Civil 3D) with hands-on software engineering, architecting three custom C# MCP servers (.NET) that let AI agents safely drive Civil 3D, Revit and Inventor — automating pipe networks, pressure-part catalogs and parametric part authoring — and pioneering multi-agent AI workflows that compress complex engineering tasks. ALX AI Career Essentials graduate, curriculum author and technical content creator with 4,300+ followers.",
+    },
+    skills: {
+      eyebrow: "Capabilities", title: "Skills & Expertise",
+      intro: "Software engineering, hydraulic modeling, multidisciplinary BIM coordination, and the AI orchestration that ties it all together.",
+      list: [
+        ["Autodesk Civil 3D & AutoCAD", 95], ["Bentley SewerGEMS & WaterGEMS", 92], ["C# / .NET MCP Server Development", 90],
+        ["BIM Coordination & Clash Detection", 90], ["Civil 3D & AutoCAD .NET API", 88], ["Inventor & Infrastructure Parts Editor", 88],
+        ["Multi-Agent AI Workflows", 85], ["Revit & Navisworks Manage", 85], ["Python & Dynamo Automation", 82], ["InfoWorks ICM", 80],
+      ] as [string, number][],
+      techTitle: "Technologies & Tools", tech: techTools,
+    },
+    experience: {
+      eyebrow: "Career", title: "Work Experience",
+      intro: "Over ten years across consultancy, contracting and site — from resort construction to BIM team leadership on regional mega-projects.",
+      hint: "Select a role on the timeline",
+      jobs: [
+        { role: "Senior Infrastructure BIM Engineer", period: "Oct 2026 — Present", year: "2026", company: "Perfect Construction", place: "6th of October, Egypt · iCity New Cairo — Crystal Lagoon Systems",
+          body: "Owning the BIM model of everything beneath the lagoons — the wet & dry utilities that keep iCity's crystal lagoon systems running. I build gravity & pressure networks in Civil 3D on custom parts catalogs, thread power and communication ducts around the lagoons in step with wet services, hunt down clashes in Navisworks before they become site rework, and turn coordinated models into shop drawings site crews can build from with confidence.",
+          tags: ["Wet & Dry Utilities", "Crystal Lagoons", "Civil 3D", "Navisworks", "MCP Automation"] },
+        { role: "Senior BIM Lead — Wet Utilities & Infrastructure Automation", period: "Jan 2025 — Oct 2026", year: "2025", company: "Smart Engineering Consultancy", place: "Cairo, Egypt · King Abdel-Aziz Park (KSA) · Qiddiya City (KSA) · WS09 Odour Control (UAE) · Tanajib Residential Camp (KSA)",
+          body: "Led BIM design and multidisciplinary coordination of wet, dry & ICT networks for mega-projects, while developing custom C#/.NET Civil 3D automation for Navisworks clash-report integration and pressure-network catalog generation. Architected parametric pressure & gravity networks from raw DWG files, orchestrated multi-agent AI workflows (Claude Code + Antigravity CLI), and enforced SBC, SAES, NEOM, RSG & EN 124 compliance with stage-based LOD 100–500 deliverables and full QA/QC clash resolution.",
+          tags: ["C# / .NET", "Civil 3D Automation", "Navisworks", "AI Workflows", "LOD 100–500"] },
+        { role: "Senior Infrastructure BIM Modular Engineer", period: "Apr 2024 — Jan 2025", year: "2024", company: "El-Dafe Trading & Contracting", place: "Cairo, Egypt · Shura Island Hotel West 02/03/04 — Red Sea Global",
+          body: "Modeled wet & dry utilities and ICT networks, prepared layouts, long sections, schedules & profiles, and managed pipe networks with catch basins, manholes and fire hydrants. Coordinated with design engineers, BIM leads and discipline contractors while guiding junior engineers.",
+          tags: ["Pipe Networks", "Wet & Dry Utilities", "ICT Networks", "Civil 3D"] },
+        { role: "Senior Technical Office Engineer", period: "Apr 2023 — Apr 2024", year: "2023", company: "Hassan Allam Construction", place: "Cairo, Egypt · 3000 Feddan HA & OC JV (Water · Sewage · Roads)",
+          body: "Prepared shop & coordination drawings from project designs, managed submittals and resolved inter-discipline conflicts, handled RFIs and variation orders, and computed subcontractor & client invoices while monitoring project budgets against scope.",
+          tags: ["Shop Drawings", "BOQ", "RFIs", "Budgeting"] },
+        { role: "Technical Office Engineer", period: "May 2021 — Apr 2023", year: "2021", company: "Hassan Allam Construction", place: "Cairo, Egypt · 3000 Feddan HA & OC JV (Water · Sewage · Roads)",
+          body: "Supported infrastructure construction of water, sewage & road networks — preparing coordination drawings, reviewing subcontractor submittals and tracking technical documentation through consultant approvals.",
+          tags: ["Infrastructure", "Coordination", "Roads"] },
+        { role: "Site Engineer (Construction)", period: "Jun 2020 — May 2021", year: "2020", company: "7 Seas", place: "Cairo, Egypt · Karma Beach Resort — South Sinai",
+          body: "Managed and supervised construction work packages, coordinated subcontractors for timely execution, inspected and reported procured items, and ran inventory & storage arrangement across concrete, landscape and finishing works.",
+          tags: ["Concrete Works", "Landscape", "Finishes"] },
+      ],
+      companies,
+    },
+    tools: {
+      eyebrow: "Proprietary Software", title: "Tools & Automation",
+      intro: "Custom C# MCP servers and AI workflows I engineered so AI agents can safely drive Civil 3D, Revit and Inventor — replacing days of manual BIM work with repeatable, auditable pipelines.",
+      tagline: "Connected tools. Repeatable workflows.",
+      list: [
+        { ...tools.c3d, body: "Lets any MCP-capable AI agent read and build Civil 3D models — gravity & pressure networks, profiles, surfaces, property sets, labels and pressure-part catalogs — through 60+ tools, behind a copy-on-open sandbox with checkpoints, rollback and a hash-verified promote, so the original drawing is never touched." },
+        { ...tools.rvt, body: "Gives AI agents safe read/edit access to live Revit models — querying elements, levels, views and links, placing families and editing parameters — inside sandboxed sessions that roll back on any Revit warning, with a write budget and an append-only audit journal. Workshared models open detached, so the central file is never contacted." },
+        { ...tools.inv, body: "Lets AI agents author parametric 3D parts and assemblies in Inventor — sketches, extrudes, revolves, lofts, sweeps, parameters and iProperties — as the upstream stage for Civil 3D pressure catalogs and structures via Infrastructure Parts Editor, with transactional edits and SHA-256-verified checkpoints." },
+        { name: "AI Orchestration Stack", meta: "Multi-Agent Engineering Workflows", tags: ["Claude Code", "Antigravity CLI", "Multi-Agent"],
+          body: "Runs multi-agent AI workflows — Claude Code for high-level planning and Antigravity CLI for strict automated execution & project-context management — applied to MCP server development and BIM automation." },
+      ],
+    },
+    projects: {
+      eyebrow: "Selected Work", title: "Projects",
+      intro: "Mega-scale infrastructure across the region — modeled, coordinated and delivered.",
+      list: [
+        { name: "iCity New Cairo — Crystal Lagoons", place: "New Cairo · Egypt", body: "Wet & dry utilities BIM for the crystal lagoon systems — network modeling, clash coordination and construction-ready shop drawings.", tags: ["Civil 3D", "Navisworks", "Wet & Dry Utilities"] },
+        { name: "King Abdel-Aziz Park", place: "Riyadh · KSA", body: "Wet utilities BIM modeling & coordination for one of Riyadh's flagship urban park developments.", tags: ["SewerGEMS", "WaterGEMS", "Civil 3D"] },
+        { name: "Qiddiya City", place: "Riyadh · KSA", body: "Infrastructure BIM coordination and parametric utility catalogs for the giga-entertainment city.", tags: ["Civil 3D", "Inventor", "Navisworks"] },
+        { name: "WS09 Odour Control Facility", place: "Abu Dhabi · UAE", body: "Gravity & pressure network design with clash-free integration to project standards.", tags: ["SewerGEMS", "BIM Integration"] },
+        { name: "Shura Island Hotel", place: "Red Sea Global · KSA", body: "Wet, dry & ICT network modeling across Hotel West 02, 03 & 04 packages.", tags: ["Civil 3D", "ICT", "Pipe Networks"] },
+        { name: "3000 Feddan Infrastructure", place: "Egypt", body: "Technical office delivery for water, sewage & road networks on a major HA & OC joint venture.", tags: ["AutoCAD", "Shop Drawings", "BOQ"] },
+        { name: "Karma Beach Resort", place: "South Sinai · Egypt", body: "Site supervision of concrete, landscape & finishing packages for a Red Sea resort build.", tags: ["Concrete", "Landscape", "Finishes"] },
+      ],
+    },
+    education: {
+      eyebrow: "Background", title: "Education & Languages",
+      intro: "Foundations in civil engineering, plus the languages and certifications behind the work.",
+      degrees: [
+        { period: "2012 — 2020", title: "B.Sc. Civil Engineering", body: "Higher Technological Institute, 10th of Ramadan / 6th October branch — Giza, Egypt · Major in General Construction Engineering", note: "Grade: Good · Graduation Project: A" },
+        { period: "2005 — 2008", title: "Secondary Education", body: "Sphinx Language School — Giza, Egypt", note: "Score: 88.9%" },
+      ],
+      languagesTitle: "Languages",
+      languages: [["Arabic", "Mother tongue", "Native"], ["English", "Fluent — spoken & written", "Fluent"]],
+      coursesTitle: "Courses & Certifications",
+      courses: ["ALX AI Career Essentials — Cohort 6", "5-Day AI Agents: Intensive Vibe Coding — Kaggle | Google (Jul 2026)", "Autodesk Civil 3D Certified (CAD Masters)", "BIM Tracks Technical Office", "Construction Management Diploma", "Advanced Piping (PTC)", "Understanding FIDIC & Contracts", "AI + BIM Curriculum Author", "Content Creator · 4,300+ followers"],
+      trainingTitle: "Field Training",
+      training: ["VINCI Construction — Cairo Metro Line 3", "Hassan Allam Sons — National Museum of Egyptian Culture", "Arab Contractors — 1M-Unit Housing, Dahshur", "Orascom Construction — Mall of Egypt"],
+    },
+    contact: {
+      eyebrow: "Get in touch", title: "Let's build something.",
+      intro: "Open to BIM leadership, infrastructure design & automation roles across the region.",
+      email: "Email", reveal: "Click to reveal", phone: "Phone", location: "Location", locationValue: "6 October City, Giza, Egypt",
+      cv: "Curriculum Vitae", cvValue: "View full CV (PDF)",
+    },
+    footer: ["Designed & engineered with precision —", "Ahmed Wahab"],
+  },
+  ar: {
+    brand: "Civil 3D Super Intelligents",
+    name: "أحمد عبد الوهاب",
+    fullName: "أحمد عبد الوهاب",
+    metaTitle: "أحمد عبد الوهاب — قائد BIM أول وخبير أتمتة البنية التحتية",
+    metaDesc: "قائد BIM أول وخبير أتمتة بنية تحتية — شبكات المرافق الرطبة والجافة والاتصالات في السعودية والإمارات ومصر، وMCP Servers مخصصة لـ Civil 3D وRevit وInventor.",
+    nav: { about: "نبذة", skills: "المهارات", tools: "الأدوات", experience: "الخبرات", projects: "المشاريع", education: "التعليم", cv: "السيرة الذاتية", contact: "تواصل" },
+    langSwitch: "English",
+    hero: {
+      status: "بيت أدوات سيفيل ثري دي",
+      headline: "أحمد عبد الوهاب",
+      role: "قائد BIM أول · أتمتة البنية التحتية · مطوّر C#/.NET",
+      lead: "بقالي أكتر من عشر سنين بسلّم شبكات المرافق وICT في السعودية والإمارات ومصر. ببني MCP Servers بـ C#/.NET عشان Civil 3D وRevit وInventor، وبستخدم multi-agent workflows لأتمتة الشغل الهندسي.",
+      ctaContact: "كلّمني", ctaTools: "شوف أدواتي", ctaCv: "شوف السيرة الذاتية",
+      stats: [["+10", "سنوات خبرة"], ["4", "أدوات مخصصة"], ["3", "دول"]],
+      scroll: "مرّر",
+      frameError: "بعض frames بتاعة المشهد محمّلتش.",
+    },
+    about: {
+      eyebrow: "الملف التعريفي",
+      title: ["بصمّم الشبكات —", "والأدوات اللي بتبنيها."],
+      body: "أنا قائد BIM أول وخبير أتمتة بنية تحتية. حاليًا مهندس BIM أول في Perfect Construction، مسؤول عن المرافق الرطبة والجافة لبحيرات iCity New Cairo. عندي أكتر من عشر سنين خبرة في السعودية والإمارات ومصر، منها King Abdel-Aziz Park وQiddiya City وShura Island. بشتغل على التصميم الهيدروليكي وBIM باستخدام SewerGEMS وWaterGEMS وInfoWorks ICM وCivil 3D. بنيت 3 MCP Servers بـ C# و.NET للتحكم الآمن في Civil 3D وRevit وInventor: شبكات مواسير، كتالوجات قطع الضغط وقطع parametric. بستخدم multi-agent workflows لتقليل الشغل المتكرر. خريج ALX AI Career Essentials، مؤلف مناهج وصانع محتوى تقني بأكتر من 4,300 متابع.",
+    },
+    skills: {
+      eyebrow: "القدرات", title: "المهارات والخبرات",
+      intro: "هندسة برمجيات، نمذجة هيدروليكية وتنسيق BIM، مع AI workflows بتربط الشغل ببعضه.",
+      list: [
+        ["Autodesk Civil 3D & AutoCAD", 95], ["Bentley SewerGEMS & WaterGEMS", 92], ["تطوير MCP Servers بـ C# / .NET", 90],
+        ["تنسيق BIM واكتشاف التعارضات", 90], ["Civil 3D & AutoCAD .NET API", 88], ["Inventor & Infrastructure Parts Editor", 88],
+        ["Multi-Agent AI Workflows", 85], ["Revit & Navisworks Manage", 85], ["أتمتة Python وDynamo", 82], ["InfoWorks ICM", 80],
+      ] as [string, number][],
+      techTitle: "التقنيات والأدوات", tech: techTools,
+    },
+    experience: {
+      eyebrow: "المسيرة المهنية", title: "الخبرة العملية",
+      intro: "أكتر من عشر سنين في الاستشارات والمقاولات والموقع، من تنفيذ منتجعات لقيادة فرق BIM.",
+      hint: "اختار دور من الخط الزمني",
+      jobs: [
+        { role: "مهندس BIM أول — البنية التحتية", period: "أكتوبر 2026 — حتى الآن", year: "2026", company: "Perfect Construction", place: "السادس من أكتوبر، مصر · iCity New Cairo — أنظمة البحيرات الكريستالية",
+          body: "أمتلك نموذج BIM لكل ما يقع أسفل البحيرات — شبكات المرافق الرطبة والجافة التي تُبقي أنظمة البحيرات الكريستالية في iCity تعمل. أبني شبكات الجاذبية والضغط في Civil 3D على كتالوجات قطع مخصصة، وأمرّر قنوات الكهرباء والاتصالات حول البحيرات بالتنسيق مع المرافق الرطبة، وأتعقّب التعارضات في Navisworks قبل أن تتحول إلى إعادة عمل في الموقع، وأحوّل النماذج المنسّقة إلى رسومات تنفيذية يبني منها فريق الموقع بثقة.",
+          tags: ["مرافق رطبة وجافة", "بحيرات كريستالية", "Civil 3D", "Navisworks", "أتمتة MCP"] },
+        { role: "قائد BIM أول — المرافق الرطبة وأتمتة البنية التحتية", period: "يناير 2025 — أكتوبر 2026", year: "2025", company: "Smart Engineering Consultancy", place: "القاهرة، مصر · King Abdel-Aziz Park (السعودية) · Qiddiya City (السعودية) · محطة WS09 للتحكم في الروائح (الإمارات) · مخيم تناجيب السكني (السعودية)",
+          body: "أقود تصميم BIM والتنسيق متعدد التخصصات لشبكات المرافق الرطبة والجافة وشبكات الاتصالات في مشاريع عملاقة، مع تطوير أتمتة مخصصة لـ Civil 3D بلغة C#‎/.NET تؤتمت دمج تقارير التعارضات من Navisworks وتوليد كتالوجات شبكات الضغط. أبني شبكات ضغط وجاذبية parametric من ملفات DWG الخام، وأدير سير عمل ذكاء اصطناعي multi-agent (Claude Code + Antigravity CLI)، وأضمن الامتثال لمعايير SBC وSAES وNEOM وRSG وEN 124 مع تسليمات LOD ‏100–500 مرحلية وحل كامل للتعارضات ضمن ضبط ومراقبة الجودة.",
+          tags: ["C# / .NET", "أتمتة Civil 3D", "Navisworks", "سير عمل AI", "LOD 100–500"] },
+        { role: "مهندس نمذجة BIM أول — البنية التحتية", period: "أبريل 2024 — يناير 2025", year: "2024", company: "El-Dafe Trading & Contracting", place: "القاهرة، مصر · Shura Island Hotel West 02/03/04 — Red Sea Global",
+          body: "قمت بنمذجة شبكات المرافق الرطبة والجافة وشبكات الاتصالات، وإعداد المخططات والقطاعات الطولية والجداول وprofiles، وإدارة شبكات المواسير بأحواض التجميع وغرف التفتيش وحنفيات الحريق، مع التنسيق مع مهندسي التصميم وقادة BIM ومقاولي التخصصات وتوجيه المهندسين المبتدئين.",
+          tags: ["شبكات مواسير", "مرافق رطبة وجافة", "شبكات اتصالات", "Civil 3D"] },
+        { role: "مهندس مكتب فني أول", period: "أبريل 2023 — أبريل 2024", year: "2023", company: "Hassan Allam Construction", place: "القاهرة، مصر · مشروع 3000 فدان — ائتلاف HA & OC (مياه · صرف صحي · طرق)",
+          body: "أعددت الرسومات التنفيذية ورسومات التنسيق من تصميمات المشروع، وأدرت الاعتمادات وحللت تعارضات التخصصات، وتعاملت مع طلبات المعلومات (RFIs) وأوامر التغيير، وأعددت مستخلصات مقاولي الباطن والعميل مع متابعة ميزانيات المشروع مقابل نطاق الأعمال.",
+          tags: ["رسومات تنفيذية", "BOQ", "RFIs", "إدارة الميزانيات"] },
+        { role: "مهندس مكتب فني", period: "مايو 2021 — أبريل 2023", year: "2021", company: "Hassan Allam Construction", place: "القاهرة، مصر · مشروع 3000 فدان — ائتلاف HA & OC (مياه · صرف صحي · طرق)",
+          body: "دعمت أعمال تنفيذ البنية التحتية لشبكات المياه والصرف الصحي والطرق — بإعداد رسومات التنسيق ومراجعة اعتمادات مقاولي الباطن ومتابعة الوثائق الفنية حتى اعتماد الاستشاري.",
+          tags: ["بنية تحتية", "تنسيق", "طرق"] },
+        { role: "مهندس موقع (تنفيذ)", period: "يونيو 2020 — مايو 2021", year: "2020", company: "7 Seas", place: "القاهرة، مصر · Karma Beach Resort — جنوب سيناء",
+          body: "أدرت وأشرفت على حزم أعمال التنفيذ، ونسّقت مع مقاولي الباطن لضمان الإنجاز في الموعد، وفحصت المواد الموردة وأعددت تقاريرها، وأدرت المخزون وترتيبات التخزين عبر الأعمال الخرسانية وlandscape والتشطيبات.",
+          tags: ["أعمال خرسانية", "Landscape", "تشطيبات"] },
+      ],
+      companies,
+    },
+    tools: {
+      eyebrow: "برمجيات خاصة", title: "الأدوات والأتمتة",
+      intro: "بنيت MCP Servers بـ C# وAI workflows عشان الـ agents يشتغلوا بأمان على Civil 3D وRevit وInventor. خطوات بتتكرر وتتراجع بدل شغل BIM اليدوي.",
+      tagline: "أدوات متوصلة. خطوات بتتكرر.",
+      list: [
+        { ...tools.c3d, meta: "Civil 3D 2025 · 2026 · 2027 · C# · .NET", body: "بيخلّي أي agent متوافق مع MCP يقرأ ويبني نماذج Civil 3D: شبكات gravity وpressure، profiles، surfaces، property sets، labels وكتالوجات قطع الضغط. أكتر من 60 أداة، في sandbox مع checkpoints وrollback واعتماد نهائي متحقق منه بالـ hash. الرسمة الأصلية ما بتتلمسش." },
+        { ...tools.rvt, body: "بيدي الـ agents قراءة وتعديل آمن لنماذج Revit: elements، levels، views، links، families وparameters. جلسات sandbox بترجع تلقائيًا عند أي Revit warning، مع write budget وaudit journal بيتضاف له بس. نماذج worksharing بتتفتح detached من غير اتصال بالملف المركزي." },
+        { ...tools.inv, body: "بيخلّي الـ agents يبنوا أجزاء وتجميعات parametric في Inventor: sketches، extrudes، revolves، lofts، sweeps، parameters وiProperties. دي المرحلة الأولى لكتالوجات قطع الضغط والمنشآت في Civil 3D عبر Infrastructure Parts Editor، مع transactions وcheckpoints متحقق منها بـ SHA-256." },
+        { name: "AI Orchestration Stack", meta: "Multi-Agent Engineering Workflows", tags: ["Claude Code", "Antigravity CLI", "Multi-Agent"],
+          body: "بستخدم Claude Code للتخطيط، وAntigravity CLI للتنفيذ الآلي وإدارة الـ context. الـ multi-agent workflows دي بتشتغل على تطوير MCP Servers وأتمتة BIM." },
+      ],
+    },
+    projects: {
+      eyebrow: "أعمال مختارة", title: "المشاريع",
+      intro: "مشاريع بنية تحتية في المنطقة اشتغلت على نمذجتها وتنسيقها وتسليمها.",
+      list: [
+        { name: "iCity New Cairo — البحيرات الكريستالية", place: "القاهرة الجديدة · مصر", body: "نمذجة BIM للمرافق الرطبة والجافة لأنظمة البحيرات الكريستالية — نمذجة الشبكات وتنسيق التعارضات ورسومات تنفيذية جاهزة للموقع.", tags: ["Civil 3D", "Navisworks", "مرافق رطبة وجافة"] },
+        { name: "King Abdel-Aziz Park", place: "الرياض · السعودية", body: "نمذجة وتنسيق BIM لشبكات المرافق الرطبة لأحد أبرز مشاريع الحدائق الحضرية في الرياض.", tags: ["SewerGEMS", "WaterGEMS", "Civil 3D"] },
+        { name: "Qiddiya City", place: "الرياض · السعودية", body: "تنسيق BIM للبنية التحتية وكتالوجات مرافق parametric لمدينة الترفيه العملاقة.", tags: ["Civil 3D", "Inventor", "Navisworks"] },
+        { name: "محطة WS09 للتحكم في الروائح", place: "أبوظبي · الإمارات", body: "تصميم شبكات الجاذبية والضغط مع تكامل خالٍ من التعارضات وفق معايير المشروع.", tags: ["SewerGEMS", "BIM Integration"] },
+        { name: "Shura Island Hotel", place: "Red Sea Global · السعودية", body: "نمذجة شبكات المرافق الرطبة والجافة والاتصالات عبر حزم فنادق الغرب 02 و03 و04.", tags: ["Civil 3D", "ICT", "Pipe Networks"] },
+        { name: "البنية التحتية — 3000 فدان", place: "مصر", body: "تسليم أعمال المكتب الفني لشبكات المياه والصرف الصحي والطرق في ائتلاف كبير بين HA وOC.", tags: ["AutoCAD", "Shop Drawings", "BOQ"] },
+        { name: "Karma Beach Resort", place: "جنوب سيناء · مصر", body: "إشراف موقعي على حزم الخرسانة وlandscape والتشطيبات لمنتجع على البحر الأحمر.", tags: ["Concrete", "Landscape", "Finishes"] },
+      ],
+    },
+    education: {
+      eyebrow: "الخلفية", title: "التعليم واللغات",
+      intro: "دراستي في الهندسة المدنية، واللغات والشهادات اللي اشتغلت عليها.",
+      degrees: [
+        { period: "2012 — 2020", title: "بكالوريوس الهندسة المدنية", body: "المعهد التكنولوجي العالي، فرع العاشر من رمضان / السادس من أكتوبر — الجيزة، مصر · تخصص هندسة التشييد العام", note: "التقدير: جيد · مشروع التخرج: امتياز" },
+        { period: "2005 — 2008", title: "الثانوية العامة", body: "مدرسة سفنكس للغات — الجيزة، مصر", note: "المجموع: 88.9%" },
+      ],
+      languagesTitle: "اللغات",
+      languages: [["العربية", "اللغة الأم", "لغة أم"], ["الإنجليزية", "بطلاقة — تحدثًا وكتابةً", "بطلاقة"]],
+      coursesTitle: "الدورات والشهادات",
+      courses: ["ALX AI Career Essentials — الدفعة 6", "5-Day AI Agents: Intensive Vibe Coding — Kaggle | Google (Jul 2026)", "شهادة Autodesk Civil 3D‏ (CAD Masters)", "المكتب الفني — BIM Tracks", "دبلومة إدارة التشييد", "الأنابيب المتقدمة (PTC)", "فهم عقود FIDIC والعقود", "مؤلف منهج AI + BIM", "صانع محتوى · أكثر من 4,300 متابع"],
+      trainingTitle: "التدريب الميداني",
+      training: ["VINCI Construction — الخط الثالث لمترو القاهرة", "Hassan Allam Sons — المتحف القومي للحضارة المصرية", "Arab Contractors — مشروع المليون وحدة سكنية، دهشور", "Orascom Construction — مول مصر"],
+    },
+    contact: {
+      eyebrow: "كلّمني", title: "خلّينا نشتغل سوا.",
+      intro: "متاح لقيادة BIM وتصميم البنية التحتية والأتمتة في المنطقة.",
+      email: "البريد الإلكتروني", reveal: "اضغط للإظهار", phone: "الهاتف", location: "الموقع", locationValue: "مدينة السادس من أكتوبر، الجيزة، مصر",
+      cv: "السيرة الذاتية", cvValue: "عرض السيرة الذاتية كاملة (PDF)",
+    },
+    footer: ["صُمّم وهُندس بدقة —", "أحمد عبد الوهاب"],
+  },
+};
+
+export type Content = (typeof content)["en"];

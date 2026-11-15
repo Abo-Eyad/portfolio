@@ -1,0 +1,112 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-line: var(--line);
+  --color-link: var(--link);
+  --color-portfolio: var(--portfolio);
+  --color-achievement: var(--achievement);
+  --color-cyan-deep: var(--cyan-deep);
+  --font-display: "Sora", "IBM Plex Sans Arabic", sans-serif;
+  --font-sans: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* Exact owner-verified dark brand kit. */
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+  --background: #07060F;
+  --navy: #0B1220;
+  --foreground: #ECE9FF;
+  --card: var(--navy);
+  --card-foreground: var(--foreground);
+  --popover: var(--navy);
+  --popover-foreground: var(--foreground);
+  --primary: #8BF6FF;
+  --primary-foreground: var(--background);
+  --link: #4F7CFF;
+  --portfolio: #28B8A6;
+  --achievement: #C9A45C;
+  --cyan-deep: #3FA9D6;
+  --secondary: var(--navy);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--navy);
+  --muted-foreground: #9A96BD;
+  --accent: var(--primary);
+  --accent-foreground: var(--background);
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --line: color-mix(in srgb, var(--primary) 35%, transparent);
+  --input: color-mix(in srgb, var(--foreground) 14%, transparent);
+  --ring: var(--link);
+}
+
+#projects { --primary: var(--portfolio); }
+#skills { --primary: var(--cyan-deep); }
+#education .eyebrow, #education .text-primary { color: var(--foreground); }
+#contact, header { --primary: var(--link); --accent: var(--link); }
+header a:not([aria-label]), main a { color: var(--link); }
+header a:not([aria-label]):hover, main a:hover { color: var(--foreground); }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif; line-height: 1.8; }
+  html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3 { font-family: "IBM Plex Sans Arabic", sans-serif; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0; }
+  * { letter-spacing: 0 !important; }
+  ::selection { background: var(--primary); color: var(--primary-foreground); }
+}
+
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+@utility hero-word {
+  display: inline-block;
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+@utility hero-scrim {
+  background: linear-gradient(to top, var(--background) 0%, color-mix(in srgb, var(--background) 55%, transparent) 45%, color-mix(in srgb, var(--background) 25%, transparent) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
