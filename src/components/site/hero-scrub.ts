@@ -5,6 +5,11 @@ export function capDevicePixelRatio(ratio: number) {
   return Math.min(2, Math.max(1, Number.isFinite(ratio) ? ratio : 1));
 }
 
+// A canvas denser than the cover-fitted 1280x720 frames adds fill cost on phones but no detail.
+export function canvasRatio(cssWidth: number, cssHeight: number, devicePixelRatio: number, frameWidth = 1280, frameHeight = 720) {
+  return Math.min(capDevicePixelRatio(devicePixelRatio), frameWidth / cssWidth, frameHeight / cssHeight);
+}
+
 export function targetFrameIndex(progress: number, frameCount = HERO_FRAME_COUNT) {
   const p = Math.min(1, Math.max(0, progress));
   return p * (frameCount - 1);

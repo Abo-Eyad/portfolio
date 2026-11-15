@@ -5,7 +5,7 @@ import { links } from "@/content/portfolio";
 import { Button } from "@/components/ui/button";
 import { HERO_FRAMES } from "./hero-frames";
 import {
-  capDevicePixelRatio,
+  canvasRatio,
   coverFit,
   easeFrameIndex,
   HERO_EAGER_FRAMES,
@@ -54,8 +54,12 @@ export function Hero() {
       if (!image || !source) return;
       try {
         image.fetchPriority = index < HERO_EAGER_FRAMES ? "high" : "low";
-        image.src = source;
-        await image.decode();
+        // Only fetch here; decoding all 80 frames up front burns CPU and the cache evicts them anyway.
+        await new Promise((resolve, reject) => {
+          image.onload = resolve;
+          image.onerror = reject;
+          image.src = source;
+        });
         if (cancelled) return;
         loaded[index] = true;
       } catch {
@@ -84,13 +88,15 @@ export function Hero() {
     let active = false;
     let lastDrawn = -1;
     let sizeDirty = true;
+    let decoding = false;
+    let lastDetails = -1;
     const canvasElement = canvas.current;
     const context = canvasElement?.getContext("2d") ?? null;
 
     const resizeCanvas = () => {
       if (!canvasElement) return;
       const rect = canvasElement.getBoundingClientRect();
-      const ratio = capDevicePixelRatio(window.devicePixelRatio);
+      const ratio = canvasRatio(rect.width, rect.height, window.devicePixelRatio);
       const width = Math.max(1, Math.round(rect.width * ratio));
       const height = Math.max(1, Math.round(rect.height * ratio));
       if (canvasElement.width !== width || canvasElement.height !== height) {
@@ -101,14 +107,28 @@ export function Hero() {
     };
 
     const drawFrame = (index: number) => {
-      if (!canvasElement || !context || !loadedFrames.current[index]) return;
+      if (!canvasElement || !context || decoding || !loadedFrames.current[index]) return;
       const image = frames.current[index];
       if (!image) return;
-      const fit = coverFit(canvasElement.width, canvasElement.height, image.naturalWidth, image.naturalHeight);
-      context.drawImage(image, fit.x, fit.y, fit.width, fit.height);
-      canvasElement.dataset["frameIndex"] = String(index);
-      lastDrawn = index;
-      sizeDirty = false;
+      // Decode off the main thread first: a synchronous JPEG decode inside drawImage janks old phones.
+      decoding = true;
+      // Very old browsers have no decode(); a failed decode still draws (drawImage then decodes itself).
+      void (image.decode?.() ?? Promise.resolve()).catch(() => undefined).then(() => {
+        decoding = false;
+        if (!active) return; // effect cleaned up or hero left view: don't paint a stale frame
+        const fit = coverFit(canvasElement.width, canvasElement.height, image.naturalWidth, image.naturalHeight);
+        try {
+          context.drawImage(image, fit.x, fit.y, fit.width, fit.height);
+        } catch {
+          // Undrawable frame: drop it so the scrub falls back to the nearest good one instead of retrying.
+          loadedFrames.current[index] = false;
+          setLoadError(true);
+          return;
+        }
+        canvasElement.dataset["frameIndex"] = String(index);
+        lastDrawn = index;
+        sizeDirty = false;
+      });
     };
 
     const tick = () => {
@@ -129,13 +149,12 @@ export function Hero() {
         const n = words.current.length;
         words.current.forEach((word, index) => {
           if (!word) return;
-          const on = reduced || p >= (index / n) * 0.45;
-          word.style.opacity = on ? "1" : "0.08";
-          word.style.transform = on ? "none" : "translateY(0.25em)";
-          word.style.filter = on ? "none" : "blur(6px)";
+          const on = reduced || p >= (index / n) * 0.45 ? "1" : "0";
+          if (word.dataset["on"] !== on) word.dataset["on"] = on;
         });
-        if (details.current) {
-          const d = reduced ? 1 : Math.min(1, Math.max(0, (p - 0.45) / 0.2));
+        const d = reduced ? 1 : Math.min(1, Math.max(0, (p - 0.45) / 0.2));
+        if (details.current && d !== lastDetails) {
+          lastDetails = d;
           details.current.style.opacity = String(d);
           details.current.style.transform = `translateY(${(1 - d) * 24}px)`;
           details.current.style.pointerEvents = d > 0.5 ? "auto" : "none";

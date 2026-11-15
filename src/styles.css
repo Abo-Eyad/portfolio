@@ -103,6 +103,9 @@ header a:not([aria-label]):hover, main a:hover { color: var(--foreground); }
   display: inline-block;
   transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
 }
+.hero-word[data-on="0"] { opacity: 0.08; transform: translateY(0.25em); }
+/* Animated blur is too costly for phone GPUs; desktop only. */
+@media (min-width: 768px) { .hero-word[data-on="0"] { filter: blur(6px); } }
 @utility hero-scrim {
   background: linear-gradient(to top, var(--background) 0%, color-mix(in srgb, var(--background) 55%, transparent) 45%, color-mix(in srgb, var(--background) 25%, transparent) 100%);
 }
