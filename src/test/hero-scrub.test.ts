@@ -4,6 +4,7 @@ import {
   capDevicePixelRatio,
   coverFit,
   easeFrameIndex,
+  frameLoadOrder,
   HERO_EAGER_FRAMES,
   HERO_FRAME_COUNT,
   nearestLoadedFrame,
@@ -27,10 +28,16 @@ describe("Owner's canvas frame-sequence rules", () => {
     expect(capDevicePixelRatio(3)).toBe(2);
   });
 
-  it("never sizes the canvas beyond what the 1280x720 frames can fill", () => {
-    expect(canvasRatio(390, 844, 3)).toBe(720 / 844);
-    expect(canvasRatio(1920, 1080, 1)).toBe(2 / 3);
+  it("never sizes the canvas beyond what the 960x540 frames can fill", () => {
+    expect(canvasRatio(390, 844, 3)).toBe(540 / 844);
+    expect(canvasRatio(1920, 1080, 1)).toBe(0.5);
     expect(canvasRatio(320, 480, 1)).toBe(1);
+  });
+
+  it("loads frames coarse-to-fine, covering the whole range and the last frame first", () => {
+    const order = frameLoadOrder();
+    expect(order.slice(0, 11)).toEqual([0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 79]);
+    expect([...order].sort((a, b) => a - b)).toEqual(Array.from({ length: 80 }, (_, i) => i));
   });
 
   it("maps scroll progress from frame 0 through frame 79", () => {

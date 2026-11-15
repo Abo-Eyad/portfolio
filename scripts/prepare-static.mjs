@@ -34,7 +34,8 @@ for (const name of await readdir(frameDirectory)) {
 for (let index = 1; index <= 80; index++) {
   const filename = `frame-${String(index).padStart(3, "0")}.jpg`;
   const destination = path.join(frameDirectory, filename);
-  const original = [path.join("assets", "frames", filename), path.join("public", "assets", "frames", filename)].find(existsSync);
+  // Prefer the web-sized copies from scripts/optimize-frames.py; the originals are ~2x the bytes.
+  const original = [path.join("assets", "frames-web", filename), path.join("assets", "frames", filename), path.join("public", "assets", "frames", filename)].find(existsSync);
   if (original) {
     await cp(original, destination);
   } else if (!existsSync(destination)) {

@@ -5,9 +5,16 @@ export function capDevicePixelRatio(ratio: number) {
   return Math.min(2, Math.max(1, Number.isFinite(ratio) ? ratio : 1));
 }
 
-// A canvas denser than the cover-fitted 1280x720 frames adds fill cost on phones but no detail.
-export function canvasRatio(cssWidth: number, cssHeight: number, devicePixelRatio: number, frameWidth = 1280, frameHeight = 720) {
+// A canvas denser than the cover-fitted 960x540 web frames adds fill cost on phones but no detail.
+export function canvasRatio(cssWidth: number, cssHeight: number, devicePixelRatio: number, frameWidth = 960, frameHeight = 540) {
   return Math.min(capDevicePixelRatio(devicePixelRatio), frameWidth / cssWidth, frameHeight / cssHeight);
+}
+
+// Coarse-to-fine: every 8th frame and the final one first, so the whole scrub range works
+// within seconds on a slow link and then fills in.
+export function frameLoadOrder(count = HERO_FRAME_COUNT) {
+  const level = (i: number) => (i % 8 === 0 || i === count - 1 ? 0 : i % 4 === 0 ? 1 : i % 2 === 0 ? 2 : 3);
+  return Array.from({ length: count }, (_, i) => i).sort((a, b) => level(a) - level(b) || a - b);
 }
 
 export function targetFrameIndex(progress: number, frameCount = HERO_FRAME_COUNT) {
