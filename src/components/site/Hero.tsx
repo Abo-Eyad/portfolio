@@ -112,8 +112,10 @@ export function Hero() {
       if (!image) return;
       // Decode off the main thread first: a synchronous JPEG decode inside drawImage janks old phones.
       decoding = true;
-      void image.decode().catch(() => undefined).then(() => {
+      // Very old browsers have no decode(); a failed decode still draws (drawImage then decodes itself).
+      void (image.decode?.() ?? Promise.resolve()).catch(() => undefined).then(() => {
         decoding = false;
+        if (!active) return; // effect cleaned up or hero left view: don't paint a stale frame
         const fit = coverFit(canvasElement.width, canvasElement.height, image.naturalWidth, image.naturalHeight);
         context.drawImage(image, fit.x, fit.y, fit.width, fit.height);
         canvasElement.dataset["frameIndex"] = String(index);
