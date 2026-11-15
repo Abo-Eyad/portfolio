@@ -117,7 +117,14 @@ export function Hero() {
         decoding = false;
         if (!active) return; // effect cleaned up or hero left view: don't paint a stale frame
         const fit = coverFit(canvasElement.width, canvasElement.height, image.naturalWidth, image.naturalHeight);
-        context.drawImage(image, fit.x, fit.y, fit.width, fit.height);
+        try {
+          context.drawImage(image, fit.x, fit.y, fit.width, fit.height);
+        } catch {
+          // Undrawable frame: drop it so the scrub falls back to the nearest good one instead of retrying.
+          loadedFrames.current[index] = false;
+          setLoadError(true);
+          return;
+        }
         canvasElement.dataset["frameIndex"] = String(index);
         lastDrawn = index;
         sizeDirty = false;
