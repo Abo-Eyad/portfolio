@@ -36,6 +36,7 @@ describe("Portable static artifact", () => {
       expect(await readFile(path.join(directory, "dist/index.html"), "utf8")).toContain('src="./assets/app.js"');
       expect(await readFile(path.join(directory, "dist/assets/app.js"), "utf8")).toContain('"./assets/frames/frame-080.jpg"');
       expect(await readFile(path.join(directory, "dist/assets/frames/frame-080.jpg"))).toEqual(Buffer.from([255, 216, 80]));
+      expect(await readFile(path.join(directory, "dist/assets/frames-hd/frame-080.jpg"))).toEqual(Buffer.from([255, 216, 80]));
       await expect(readFile(path.join(directory, "dist/_worker.js"))).rejects.toThrow();
     } finally {
       await rm(directory, { recursive: true, force: true });

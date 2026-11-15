@@ -5,6 +5,7 @@ import {
   coverFit,
   easeFrameIndex,
   frameLoadOrder,
+  hdFrameUrl,
   HERO_EAGER_FRAMES,
   HERO_FRAME_COUNT,
   nearestLoadedFrame,
@@ -28,10 +29,15 @@ describe("Owner's canvas frame-sequence rules", () => {
     expect(capDevicePixelRatio(3)).toBe(2);
   });
 
-  it("never sizes the canvas beyond what the 960x540 frames can fill", () => {
-    expect(canvasRatio(390, 844, 3)).toBe(540 / 844);
-    expect(canvasRatio(1920, 1080, 1)).toBe(0.5);
+  it("never sizes the canvas beyond what the 1280x720 originals can fill", () => {
+    expect(canvasRatio(390, 844, 3)).toBe(720 / 844);
+    expect(canvasRatio(1920, 1080, 1)).toBe(2 / 3);
     expect(canvasRatio(320, 480, 1)).toBe(1);
+  });
+
+  it("finds the full-resolution original only where a separate tier is shipped", () => {
+    expect(hdFrameUrl("./assets/frames/frame-007.jpg")).toBe("./assets/frames-hd/frame-007.jpg");
+    expect(hdFrameUrl("/__l5e/assets-v1/id/frame-007.jpg")).toBeNull();
   });
 
   it("loads frames coarse-to-fine, covering the whole range and the last frame first", () => {

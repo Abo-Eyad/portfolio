@@ -9,6 +9,7 @@ import {
   coverFit,
   easeFrameIndex,
   frameLoadOrder,
+  hdFrameUrl,
   HERO_EAGER_FRAMES,
   nearestLoadedFrame,
   targetFrameIndex,
@@ -90,6 +91,11 @@ export function Hero() {
     let sizeDirty = true;
     let decoding = false;
     let lastDetails = -1;
+    let lastDrawAt = 0;
+    let hdDrawn = -1;
+    let hdPending = false;
+    const hdFrames = new Map<number, HTMLImageElement>();
+    const saveData = (navigator as { connection?: { saveData?: boolean } }).connection?.saveData;
     const canvasElement = canvas.current;
     const context = canvasElement?.getContext("2d") ?? null;
 
@@ -126,8 +132,38 @@ export function Hero() {
           return;
         }
         canvasElement.dataset["frameIndex"] = String(index);
+        delete canvasElement.dataset["hd"];
         lastDrawn = index;
+        lastDrawAt = performance.now();
+        hdDrawn = -1;
         sizeDirty = false;
+      });
+    };
+
+    // Motion hides the light scrub frames; once one has rested on screen, swap in its original.
+    const sharpen = (index: number) => {
+      const source = hdFrameUrl(HERO_FRAMES[index] ?? "");
+      if (!canvasElement || !context || !source) return;
+      let image = hdFrames.get(index);
+      if (!image) {
+        image = new Image();
+        if (!image.decode) return;
+        image.src = source;
+        // shortcut: originals are kept for the page's life (at most 80, ~12 MB compressed); add eviction if memory reports come in
+        hdFrames.set(index, image);
+      }
+      const hd = image;
+      hdPending = true;
+      void hd.decode().then(() => {
+        if (!active || lastDrawn !== index || sizeDirty) return;
+        const fit = coverFit(canvasElement.width, canvasElement.height, hd.naturalWidth, hd.naturalHeight);
+        context.drawImage(hd, fit.x, fit.y, fit.width, fit.height);
+        canvasElement.dataset["hd"] = String(index);
+        hdDrawn = index;
+      }).catch(() => {
+        hdDrawn = index; // a missing original is not an error: keep the light frame, don't retry in a loop
+      }).then(() => {
+        hdPending = false;
       });
     };
 
@@ -140,10 +176,16 @@ export function Hero() {
         const p = reduced ? 1 : Math.min(1, Math.max(0, -rect.top / span));
         const target = targetFrameIndex(p);
         current = reduced ? target : easeFrameIndex(current, target);
+        if (Math.abs(target - current) < 0.01) current = target; // otherwise easing never reaches the last frame
 
         if (!reduced) {
           const index = nearestLoadedFrame(current, loadedFrames.current);
           if (index !== null && (index !== lastDrawn || sizeDirty)) drawFrame(index);
+          // Sharpen only the exact frame (not a still-loading fallback) after it has rested 150 ms.
+          else if (
+            index !== null && index === Math.floor(current) && hdDrawn !== index && !hdPending && !decoding &&
+            !saveData && performance.now() - lastDrawAt > 150
+          ) sharpen(index);
         }
 
         const n = words.current.length;
